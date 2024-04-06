@@ -12,7 +12,7 @@ auto main(int argc, char *argv[]) -> int
 {   
     QApplication a(argc, argv);
 
-    _processHelper.SetPassword("Aladar123");
+    //_processHelper.SetPassword("Aladar123");
     _processHelper.setWriteErr(false);
     MainWindow w;
     MainPresenter p;
