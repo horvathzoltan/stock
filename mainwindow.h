@@ -19,22 +19,22 @@ private:
     //void set_DoWorkRModel(const MainViewModel::DoWorkRModel& m);
     //MainViewModel::DoWorkModel get_DoWorkModel();
     void set_StatusLine(const MainViewModel::StringModel& m);
-    void set_PresenterStatus(const MainViewModel::StringModel& m);
-    void set_StorageLabel(const MainViewModel::StringModel& m);
-    void set_ImageFileList(const MainViewModel::StringListModel& m);
-    void set_DeviceList(const MainViewModel::DeviceListModel& m);
-    void set_DeviceListClear();
-    MainViewModel::WriteStatusWM getLastWriteStatus();
-    void set_DeviceWriteStates(const MainViewModel::WriteStatusWM& m);
-    void set_ClearDeviceWriteStates();
-    void set_ProgressLine(const MainViewModel::IntModel& m);
-    MainViewModel::IntModel get_WriteBytes();
-    void set_ShowProgressbar();
-    void set_HideProgressbar();
-    void set_ProgressText(const MainViewModel::StringModel& m);
+    //void set_PresenterStatus(const MainViewModel::StringModel& m);
+    //void set_StorageLabel(const MainViewModel::StringModel& m);
+    void set_ItemList(const MainViewModel::StringListModel& m);
+    void set_StorageList(const MainViewModel::DeviceListModel& m);
+    //void set_DeviceListClear();
+    //MainViewModel::WriteStatusWM getLastWriteStatus();
+    //void set_DeviceWriteStates(const MainViewModel::WriteStatusWM& m);
+    //void set_ClearDeviceWriteStates();
+    //void set_ProgressLine(const MainViewModel::IntModel& m);
+    //MainViewModel::IntModel get_WriteBytes();
+    //void set_ShowProgressbar();
+    //void set_HideProgressbar();
+    //void set_ProgressText(const MainViewModel::StringModel& m);
 
-    MainViewModel::DeviceModel get_Device();
-    MainViewModel::StringModel get_InputFileName();
+    //MainViewModel::DeviceModel get_Device();
+    //MainViewModel::StringModel get_InputFileName();
 
     void SetDeviceWriteState(const MainViewModel::WriteStatus& m);
     bool devicesContainsBySerial(const QString& s);

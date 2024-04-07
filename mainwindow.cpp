@@ -66,84 +66,21 @@ check:/dev/sdc:1-1.1.2_1.0:OK
 ok
 finished
 */
-MainViewModel::WriteStatusWM MainWindow::getLastWriteStatus(){
-    QString a = ui->plainTextEdit_status->toPlainText();
-    MainViewModel::WriteStatusWM r;
 
-    int ix = a.lastIndexOf("processWriteAction");
-    if(ix>0){
-        int ix2 = a.indexOf("finished", ix);
-        if(ix2>0){
-            QStringList b = a.mid(ix, ix2-ix).split('\n');
-            for(auto&c:b){
-                if(c.startsWith("check:")){
-                    QStringList tokens = c.split(':');
-                    if(tokens.length()>=4){
-                        MainViewModel::WriteStatus m;
-                        m.devicePath = tokens[1];
-                        m.usbPath = tokens[2];
-                        m.status = tokens[3]=="OK";
-                        r.append(m);
-                    }
-                }
-            }
-        }
-    }
-    return r;
-}
 
-MainViewModel::IntModel MainWindow::get_WriteBytes()
+void MainWindow::set_ItemList(const MainViewModel::StringListModel& m)
 {
-    QString a = ui->plainTextEdit_status->toPlainText();
-    MainViewModel::IntModel r{0};
-
-    int ix = a.lastIndexOf("processWriteAction");
-    if(ix>0){
-        int ix2 = a.indexOf("finished", ix);
-        if(ix2>0){
-            QStringList b = a.mid(ix, ix2-ix).split('\n');
-            for(auto&c:b){
-                if(c.startsWith("writing:")){
-                    QStringList tokens = c.split(' ');
-                    if(tokens.length()>=4){
-                        bool ok;
-                        qlonglong i = tokens[1].toLongLong(&ok);
-                        if(ok){
-                            r.value = i;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return r;
-}
-
-
-void MainWindow::set_PresenterStatus(const MainViewModel::StringModel &m)
-{
-    ui->label_status->setText(m.txt);
-}
-
-void MainWindow::set_StorageLabel(const MainViewModel::StringModel &m)
-{
-    ui->label_storage->setText(m.txt);
-}
-
-void MainWindow::set_ImageFileList(const MainViewModel::StringListModel& m)
-{
-    ui->listWidget_images->clear();
+    ui->listWidget_items->clear();
     if(!m.txts.isEmpty()){
-        ui->listWidget_images->addItems(m.txts);
+        ui->listWidget_items->addItems(m.txts);
     }
 }
 
-void MainWindow::set_DeviceWriteStates(const MainViewModel::WriteStatusWM& m) {
-    for(auto&a:m.states()){
-        SetDeviceWriteState(a);
-    }
-}
+// void MainWindow::set_DeviceWriteStates(const MainViewModel::WriteStatusWM& m) {
+//     for(auto&a:m.states()){
+//         SetDeviceWriteState(a);
+//     }
+// }
 
 void MainWindow::SetDeviceWriteState(const MainViewModel::WriteStatus &m)
 {
@@ -363,18 +300,6 @@ void MainWindow::on_pushButton_write_clicked()
     emit WriteActionTriggered(this);
 }
 
-MainViewModel::StringModel MainWindow::get_InputFileName()
-{
-    MainViewModel::StringModel m;
-    auto items = ui->listWidget_images->selectedItems();
-    if(!items.isEmpty()){
-        QListWidgetItem *item = items.first();
-        if(item){
-            m.txt = item->text();
-        }
-    }
-    return m;
-}
 
 void MainWindow::on_pushButton_exit_clicked()
 {
@@ -389,23 +314,23 @@ void MainWindow::on_pushButton_log_clicked()
 }
 
 /*progress*/
-void MainWindow::set_ShowProgressbar()
-{
-    ui->progressBar->setVisible(true);
-    ui->label_progress->setVisible(true);
-}
+// void MainWindow::set_ShowProgressbar()
+// {
+//     ui->progressBar->setVisible(true);
+//     ui->label_progress->setVisible(true);
+// }
 
-void MainWindow::set_HideProgressbar()
-{
-    ui->progressBar->setVisible(false);
-    ui->label_progress->setVisible(false);
-}
+// void MainWindow::set_HideProgressbar()
+// {
+//     ui->progressBar->setVisible(false);
+//     ui->label_progress->setVisible(false);
+// }
 
-void MainWindow::set_ProgressText(const MainViewModel::StringModel &m)
-{
-    ui->label_progress->setText(m.txt);
-}
+// void MainWindow::set_ProgressText(const MainViewModel::StringModel &m)
+// {
+//     ui->label_progress->setText(m.txt);
+// }
 
-void MainWindow::set_ProgressLine(const MainViewModel::IntModel& m){
-    ui->progressBar->setValue(m.value);
-}
+// void MainWindow::set_ProgressLine(const MainViewModel::IntModel& m){
+//     ui->progressBar->setValue(m.value);
+// }
