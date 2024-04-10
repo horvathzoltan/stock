@@ -16,13 +16,11 @@ contains(QMAKESPEC,.*linux-rasp-pi\d*-.*){
 
 unix:rpi:
 {
-    LIBS += -L/home/zoli/pi4_bullseye/sysroot/usr/lib/arm-linux-gnueabihf
+   # LIBS += -L/home/zoli/pi4_bullseye/sysroot/usr/lib/arm-linux-gnueabihf
 }
 
 SOURCES += \
     #actions.cpp \
-    bi/devicestorage.cpp \
-    bi/imagestorage.cpp \
     devicewidget.cpp \
     dowork.cpp \
     helpers/blockdevicehelper.cpp \
@@ -38,8 +36,6 @@ SOURCES += \
 
 HEADERS += \
     #actions.h \
-    bi/devicestorage.h \
-    bi/imagestorage.h \
     devicewidget.h \
     dowork.h \
     global.h \
