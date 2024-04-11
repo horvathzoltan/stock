@@ -61,9 +61,9 @@ void MainPresenter::processExitAction(IMainView *sender)
     QCoreApplication::quit();
 }
 
-void MainPresenter::initView(IMainView *w) {    
+void MainPresenter::initView(IMainView *w) {
 
-    _devicePollTimer.start(5000);
+    _storagePollTimer.start(5000);
 };
 
 

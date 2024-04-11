@@ -40,7 +40,7 @@ private:
 
     void refreshView(IMainView *w);
 
-    QTimer _devicePollTimer;
+    QTimer _storagePollTimer;
     //bool isFreeForOperation();
     quint32 _pollingCounter = 0;
 
